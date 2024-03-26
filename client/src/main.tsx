@@ -8,12 +8,13 @@ import {store} from "./redux/store.ts";
 import {ThemeProvider} from "./components/theme-provider.tsx";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 
+const id = process.env.REACT_GOOGLE_SECRET
+	? process.env.REACT_GOOGLE_SECRET
+	: "";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
 	<React.StrictMode>
-		<GoogleOAuthProvider
-			clientId={
-				"138114947112-avmr8pj3vjra4r8tcgkjpcv2rl78d3va.apps.googleusercontent.com"
-			}>
+		<GoogleOAuthProvider clientId={id}>
 			<Provider store={store}>
 				<BrowserRouter>
 					<ThemeProvider>
