@@ -1,0 +1,175 @@
+###
+POST http://localhost:8080/auth/signup/
+Content-Type: application/json
+
+{
+    "name":"sreejith",
+    "email":"user12@gmail.com",
+    "password":"123456"
+}
+
+###
+POST http://localhost:8080/auth/login/
+Content-Type: application/json
+
+{
+    "email":"harper@gmail.com",
+    "password":"12345678"
+}
+
+###
+POST http://localhost:8080/course/add-course/
+Content-Type: application/json
+
+{
+    "courseName": "Mobile App Develpoment",
+	"courseDescription": "This course focuses on dart",
+	"courseDuration": 12,
+	"courseInstructor": "John Ebraham",
+	"courseLevel": "beginner",
+	"sessions": [
+		{
+			"sessionTitle": "Baisc of Flutter",
+			"sessionDescription": "here we will learn basics of flutter",
+			"sessionTopics": ["Introduction to flutter","Flutter archterure"],
+            "sessionDuration":2
+		},
+        {
+			"sessionTitle": "Baisc of Dart",
+			"sessionDescription": "here we know what is dart",
+			"sessionTopics": ["Hello world in dart","Dart program"],
+            "sessionDuration":10
+		}
+	]
+}
+
+
+###
+GET http://localhost:8080/course/get-courses
+
+
+###
+GET http://localhost:8080/course/get-single-course/65e215cccbf9e3e7a587d974
+
+
+###
+GET http://localhost:8080/instructor/get-instructors/
+
+###
+GET http://localhost:8080/instructor/single-instructor/65e335d4af4e1be2c1ad6adc
+
+
+###
+POST http://localhost:8080/instructor/create-instructor/
+Content-Type: application/json
+
+{
+	"fname":"Marry",
+	"lname":"Joen",
+	"age" :"28",
+	"experience":"1",
+	"qualification":"Masters",
+	"institute":"Gandhi University"
+}
+
+
+###
+GET  http://localhost:8080/public/get-data/
+
+
+###
+POST http://localhost:8080/public/add-new-role/
+Content-Type: application/json
+
+{
+	"id":"65e6c577edb87226e733286d",
+	"role":"Django Developer"
+}
+
+
+###
+POST http://localhost:8080/public/add-new-company/
+Content-Type: :application/json
+
+{
+	"s":"hello"
+}
+
+
+
+###
+POST http://localhost:8080/user/get-user/
+Content-Type: application/json
+
+{
+	"id":"2382983298382"
+}
+
+//work prefrence api
+###
+POST http://localhost:8080/user/update-workpreference
+Content-Type: application/json
+
+{
+	"role":""
+}
+
+###
+DELETE http://localhost:8080/user/remove-experience/12182818
+
+
+###
+PATCH http://localhost:8080/user/edit-education
+Content-Type: application/json
+
+{
+	"formData":"hello",
+	"id":"129000",
+	"userid":"90"
+}
+
+
+###
+POST http://localhost:8080/auth/create-admin
+Content-Type: application/json
+
+{
+	"name":"admin",
+	"email":"admin@gmail.com",
+	"password":"1234567"
+}
+
+
+###
+POST http://localhost:8080/auth/admin-login
+Content-Type: application/json
+
+{
+	"email":"admin@gmail.com",
+	"password":"1234567"
+}
+
+
+###
+
+POST http://localhost:8080/review/new-review/
+Content-Type: application/json
+
+{
+	"courseId":"65e215e8cbf9e3e7a587d978",
+	"userId":"jsdjfjdjf",
+	"rating":"4",
+	"review":"jajjjj"
+}
+
+
+###
+POST http://localhost:8080/course/add-course-key
+Content-Type: application/json
+
+{
+	"j":"hello"
+}
+
+###
+DELETE http://localhost:8080/course/delete-course/65f2c6b70f284cf84cc6273e
