@@ -30,12 +30,12 @@ const MainDash = () => {
 				</div>
 			</div>
 			<div className="w-full h-auto flex items-center justify-center gap-5 ">
-				<div className="w-1/2 h-[300px] bg-white rounded-lg shadow-md p-4 space-y-3 dark:bg-slate-900 dark:border dark:border-slate-200 dark:border-opacity-20">
+				<div className="w-1/2 h-[300px] bg-white rounded-lg shadow-md p-4 space-y-3 dark:bg-slate-900 dark:border dark:border-slate-200 dark:border-opacity-20 hide-scrollbar">
 					<div className="w-full flex items-center justify-between">
 						<h1 className="font-bold">Students</h1>
 						<p className="text-slate-500">View all</p>
 					</div>
-					<div className="w-full grid gap-5 overflow-y-scroll hide-scrollbar">
+					<div className="w-full grid gap-5 overflow-y-scroll">
 						{users.map((user, index) => (
 							<div
 								key={index}
@@ -53,7 +53,7 @@ const MainDash = () => {
 						))}
 					</div>
 				</div>
-				<div className="w-1/2 h-[300px] bg-white hide-scrollbar rounded-lg shadow-md dark:bg-slate-900 dark:border dark:border-slate-200 dark:border-opacity-20">
+				<div className="w-1/2 h-[300px] bg-white hide-scrollbar rounded-lg shadow-md dark:bg-slate-900 dark:border dark:border-slate-200 dark:border-opacity-20 hide-scrollbar">
 					<div className="w-full h-full bg-white dark:bg-slate-900 dark:border dark:border-slate-200 dark:border-opacity-20 rounded-lg shadow-md p-4 space-y-3 overflow-y-scroll">
 						<div className="w-full flex items-center justify-between">
 							<h1 className="font-bold">Instrcutors</h1>

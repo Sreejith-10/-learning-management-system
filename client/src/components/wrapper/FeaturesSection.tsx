@@ -32,7 +32,7 @@ const FeaturesSection = () => {
 						</p>
 					</span>
 				</div>
-				<div className="w-full h-auto grid grid-cols-4 xls:grid-cols-3 xl:grid-cols-3 lg:grid-cols-1 lg:gap-5 md:flex md:flex-wrap md:gap-0 sm:gap-0 gap-5 mt-10">
+				<div className="w-full h-auto grid grid-cols-4 xls:grid-cols-3 xl:grid-cols-3 lg:grid-cols-1 lg:gap-5 md:flex md:flex-wrap md:gap-0 sm:gap-0 gap-5 mt-10 sm:items-center sm:justify-center">
 					{course.length > 0
 						? course.slice(0, num).map((item, id) => (
 								<motion.span
@@ -40,8 +40,7 @@ const FeaturesSection = () => {
 									initial={{translateX: 100, opacity: 0}}
 									whileInView={{translateX: 0, opacity: 1}}
 									transition={{delay: id * 0.5}}
-									viewport={{once: true}}
-									className="w-full">
+									viewport={{once: true}}>
 									<CourseCard key={id} data={item} />
 								</motion.span>
 						  ))

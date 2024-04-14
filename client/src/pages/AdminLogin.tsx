@@ -15,10 +15,9 @@ import FormSuccess from "@/components/FormSuccess";
 import {Button} from "@/components/ui/button";
 import {useState} from "react";
 import "../App.css";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useAppDispatch} from "@/redux";
-import {setAuth, updateUser} from "@/redux/authSlice";
 import {setAuthenticated} from "@/redux/dashboardSlice";
 
 export const loginSchema = z.object({
@@ -32,7 +31,7 @@ const AdminLogin = () => {
 
 	const [showPass, setShowPass] = useState(false);
 	const [err, setErr] = useState("");
-	const [success, setSuccess] = useState("");
+	const [success, _setSuccess] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const form = useForm<z.infer<typeof loginSchema>>({
@@ -46,17 +45,14 @@ const AdminLogin = () => {
 	const submitHandler = async (values: z.infer<typeof loginSchema>) => {
 		try {
 			setIsSubmitting(true);
-			const {data} = await axios.post("/auth/admin-login", values, {
+			setErr("");
+			await axios.post("/auth/admin-login", values, {
 				headers: {
 					"Content-Type": "application/json",
 				},
 			});
-			console.log(data);
 			dispatch(setAuthenticated(true));
-			// dispatch(setAuth(data.token));
-			// dispatch(updateUser(data.user));
 			setIsSubmitting(false);
-			// setSuccess(data.message);
 			navigate("/dashboard");
 		} catch (error: any) {
 			setIsSubmitting(false);

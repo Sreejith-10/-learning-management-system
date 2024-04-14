@@ -2,8 +2,26 @@ import {Star} from "lucide-react";
 import {motion} from "framer-motion";
 import {Link} from "react-router-dom";
 import {CourseType} from "@/lib/types";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 const CourseCard = ({data}: {data: CourseType}) => {
+	const [review, setReview] = useState(0);
+
+	const fetchData = async () => {
+		axios
+			.get("/review/get-review/" + data._id)
+			.then(({data}) => setReview(data?.reviews?.reviews?.length));
+	};
+
+	useEffect(() => {
+		try {
+			fetchData();
+		} catch (error) {
+			console.log(error);
+		}
+	}, [data]);
+
 	return (
 		<motion.div
 			initial={{translateX: 0}}
@@ -11,7 +29,7 @@ const CourseCard = ({data}: {data: CourseType}) => {
 			transition={{ease: "easeIn", delay: 0.3}}
 			className="w-[300px] max-w-[300px] lg:max-w-[250px] sm:min-w-[500px] sm:max-w-[500px] sm:w-[500px] md:min-w-[300px] min-h-[470px] max-h-[470px] shadow-md cursor-pointer  border border-slate-400 border-opacity-30 rounded-xl p-3 space-y-4">
 			<Link
-				to={"/course"}
+				to={"/course/" + data._id}
 				state={{courseId: data._id}}
 				className="w-full h-full flex flex-col gap-3">
 				<div className="w-full h-[200px]">
@@ -50,7 +68,7 @@ const CourseCard = ({data}: {data: CourseType}) => {
 					</div>
 					<div className="flex items-center justify-start gap-2">
 						<Star className="fill-yellow-500 text-yellow-500" size={20} />
-						<span className="font-medium text-sm">2.8K reviews</span>
+						<span className="font-medium text-sm">{review} reviews</span>
 					</div>
 					<span className="text-start font-semibold text-slate-500 text-[12px]">
 						{data.courseLevel} | Professional Cirtificatie |{" "}

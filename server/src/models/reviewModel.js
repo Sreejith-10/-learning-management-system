@@ -1,4 +1,4 @@
-import mongoose, {mongo} from "mongoose";
+import mongoose from "mongoose";
 
 const reviewSchema = new mongoose.Schema({
 	courseId: {
@@ -12,15 +12,7 @@ const reviewSchema = new mongoose.Schema({
 				required: true,
 			},
 			rating: {
-				content: Number,
-				instructor: Number,
-				interactiveElements: Number,
-				courseStructure: Number,
-				platformExperience: Number,
-				feedbackAndAssessment: Number,
-				supportAndResources: Number,
-				skillDevelopment: Number,
-				overallExperience: Number,
+				type: Number,
 			},
 			review: {
 				type: String,

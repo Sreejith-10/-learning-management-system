@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import stripe from "stripe";
 import UserModel from "../models/userModel.js";
+import CourseModel from "../models/courseModel.js";
 
 dotenv.config();
 
@@ -100,6 +101,10 @@ export const webHooks = async (req, res) => {
 				await UserModel.findOneAndUpdate(
 					{userId: userId},
 					{$addToSet: {courses: {courseId: courseId}}}
+				);
+				await CourseModel.findOneAndUpdate(
+					{_id: courseId},
+					{$inc: {studentsEnrolled: 1}}
 				);
 			})
 			.catch((err) => console.log(err.message));

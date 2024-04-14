@@ -75,6 +75,7 @@ const Login = () => {
 			dispatch(setAuth(data.token));
 			dispatch(updateUser(data.user));
 			setSuccess(data.message);
+			localStorage.setItem("token", JSON.stringify(data.token));
 			toast({
 				title: "Logged in",
 				description: `Welcome back ${data.user.userName}`,
@@ -167,6 +168,11 @@ const Login = () => {
 								className="hover:text-purple-700 ease-linear delay-200"
 								to={"/register"}>
 								Create a new account{" "}
+							</Link>
+							<Link
+								className="hover:text-purple-700 ease-linear delay-200"
+								to={"/email-confirmation"}>
+								Forgot password ?
 							</Link>
 						</span>
 					</Form>

@@ -71,8 +71,19 @@ const Home = () => {
 								Discover a vast range of courses
 							</p>
 						</div>
-						<div className="w-full flex items-center justify-center sm:flex-col lg:flex-wrap lg:gap-1 gap-5">
-							<div className="w-[300px] h-[300px] rounded-md bg-orange-400 flex items-center justify-center gap-10 flex-col">
+						<div className="w-full flex items-center justify-center sm:flex-col lg:flex-wrap lg:gap-10 gap-5">
+							<motion.div
+								initial={{opacity: 0, scale: 0, rotate: 180}}
+								whileInView={{opacity: 1, scale: 1, rotate: 0}}
+								transition={{
+									delay: 0.5,
+									duration: 0.2,
+									type: "spring",
+									stiffness: 260,
+									damping: 20,
+								}}
+								viewport={{once: true}}
+								className="w-[300px] h-[300px] rounded-md bg-orange-400 flex items-center justify-center gap-10 flex-col">
 								<div>
 									<img
 										src="/assets/icons/software-development.png"
@@ -88,9 +99,20 @@ const Home = () => {
 										Over 1200 Courses
 									</p>
 								</div>
-							</div>
+							</motion.div>
 
-							<div className="w-[300px] h-[300px] rounded-md bg-lime-400 flex items-center justify-center gap-10 flex-col">
+							<motion.div
+								initial={{opacity: 0, scale: 0, rotate: 180}}
+								whileInView={{opacity: 1, scale: 1, rotate: 0}}
+								transition={{
+									delay: 0.7,
+									duration: 0.2,
+									type: "spring",
+									stiffness: 260,
+									damping: 20,
+								}}
+								viewport={{once: true}}
+								className="w-[300px] h-[300px] rounded-md bg-lime-400 flex items-center justify-center gap-10 flex-col">
 								<div>
 									<img
 										src="/assets/icons/artificial-intelligence.png"
@@ -106,8 +128,20 @@ const Home = () => {
 										Over 200 Courses
 									</p>
 								</div>
-							</div>
-							<div className="w-[300px] h-[300px] rounded-md bg-pink-400 flex items-center justify-center gap-10 flex-col">
+							</motion.div>
+
+							<motion.div
+								initial={{opacity: 0, scale: 0, rotate: 180}}
+								whileInView={{opacity: 1, scale: 1, rotate: 0}}
+								transition={{
+									delay: 0.9,
+									duration: 0.2,
+									type: "spring",
+									stiffness: 260,
+									damping: 20,
+								}}
+								viewport={{once: true}}
+								className="w-[300px] h-[300px] rounded-md bg-pink-400 flex items-center justify-center gap-10 flex-col">
 								<div>
 									<img
 										src="/assets/icons/digital-marketing.png"
@@ -123,8 +157,19 @@ const Home = () => {
 										Over 120 Courses
 									</p>
 								</div>
-							</div>
-							<div className="w-[300px] h-[300px] rounded-md bg-purple-400  flex items-center justify-center gap-10 flex-col">
+							</motion.div>
+							<motion.div
+								initial={{opacity: 0, scale: 0, rotate: 180}}
+								whileInView={{opacity: 1, scale: 1, rotate: 0}}
+								transition={{
+									delay: 1.1,
+									duration: 0.2,
+									type: "spring",
+									stiffness: 260,
+									damping: 20,
+								}}
+								viewport={{once: true}}
+								className="w-[300px] h-[300px] rounded-md bg-purple-400  flex items-center justify-center gap-10 flex-col">
 								<div>
 									<img
 										src="/assets/icons/data.png"
@@ -140,7 +185,7 @@ const Home = () => {
 										Over 10 Courses
 									</p>
 								</div>
-							</div>
+							</motion.div>
 						</div>
 					</PageWrapper>
 				</section>

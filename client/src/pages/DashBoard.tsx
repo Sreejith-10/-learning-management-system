@@ -10,15 +10,7 @@ import {
 } from "@/redux/dashboardSlice";
 import DashBoardRoute from "@/routes/DashBoardRoute";
 import axios from "axios";
-import {
-	Bell,
-	Book,
-	GraduationCap,
-	Moon,
-	School,
-	Sun,
-	Telescope,
-} from "lucide-react";
+import {Bell, Moon, Sun} from "lucide-react";
 import {useEffect, useState} from "react";
 
 export const Dashboard = () => {

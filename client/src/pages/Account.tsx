@@ -44,12 +44,12 @@ const Account = () => {
 	});
 
 	return (
-		<main className="w-full h-screen sm:h-auto bg-slate-200/50 dark:bg-slate-900/90 mt-[80px] sm:mt-0 relative">
-			<div className="mx-[15%] pt-[50px] pb-5 p-5">
+		<main className="w-full h-auto sm:h-auto lg:w-full bg-slate-200/50 dark:bg-slate-900/90 mt-[80px] sm:mt-0 relative">
+			<div className="mx-[15%] xl:mx-[5%] sm:mx-[5%] lg:mx-[10%] pt-[50px] pb-5 p-5">
 				<Links />
 			</div>
 			<PageWrapper>
-				<div className="w-full h-auto flex sm:flex-col">
+				<div className="w-full h-auto flex sm:flex-col lg:flex-col">
 					<section className="w-[25%] sm:w-full md:w-full lg:w-full h-auto p-5 space-y-5">
 						<div className="w-full h-auto px-5 py-8 bg-white dark:bg-slate-900 dark:border dark:border-slate-200 dark:border-opacity-20 rounded-md shadow-md flex flex-col gap-5 items-center justify-center">
 							<h2 className="font-semibold text-lg">Personl Details</h2>
@@ -126,7 +126,7 @@ const Account = () => {
 							</div>
 						)}
 					</section>
-					<section className="w-[75%] sm:w-full h-auto p-5 space-y-5">
+					<section className="w-[75%] sm:w-full lg:w-full h-auto p-5 space-y-5">
 						<h1 className="font-semibold text-lg">Experience</h1>
 
 						{user?.workExperience?.length != 0 ? (
@@ -144,9 +144,9 @@ const Account = () => {
 								</div>
 								{user?.workExperience?.map((item, idx) => (
 									<div
-										className="w-full h-auto flex items-start justify-between pb-3"
+										className="w-full h-auto flex md:flex-col items-start justify-between pb-3"
 										key={idx}>
-										<div className="flex flex-col items-start justify-start gap-2">
+										<div className="flex flex-col  items-start justify-start gap-2">
 											<span className="flex items-center justify-center gap-3">
 												<h2 className="font-semibold">
 													{item?.role} at {item?.company}
@@ -182,8 +182,8 @@ const Account = () => {
 									<h2 className="font-medium">Work Histroy</h2>
 									<Info size={20} className="text-blue-600" />
 								</span>
-								<div className="w-full h-auto bg-slate-200/60 dark:bg-slate-800 rounded-md flex items-center justify-between p-2">
-									<div className="w-[70%]">
+								<div className="w-full h-auto bg-slate-200/60 dark:bg-slate-800 rounded-md flex lg:flex-col lg:items-start  items-center justify-between p-2">
+									<div className="w-[70%] lg:w-full">
 										<p className="text-sm font-medium text-slate-600 dark:text-slate-300">
 											Add your past work experience here. If yours just starting
 											out, you can add insternships or volunteer experience
@@ -191,7 +191,7 @@ const Account = () => {
 										</p>
 									</div>
 									<div
-										className="w-[30%] flex items-center justify-center p-2 dark:text-slate-700"
+										className="w-[30%] lg:w-full flex items-center justify-center p-2 dark:text-slate-700"
 										onClick={() => setShowForm(true)}>
 										<span className="w-[230px] cursor-pointer flex items-center justify-center gap-2 bg-white dark:bg-slate-700 dark:text-slate-700 border-[2px] border-blue-600 dark:border-slate-400 rounded-md">
 											<Plus className="text-blue-600 dark:text-slate-300" />
@@ -251,14 +251,14 @@ const Account = () => {
 									</div>
 								))
 							) : (
-								<div className="w-full h-auto bg-slate-200/60 dark:bg-slate-800 rounded-md flex items-center justify-between p-2">
-									<div className="w-[70%]">
+								<div className="w-full h-auto bg-slate-200/60 dark:bg-slate-800 rounded-md flex  lg:flex-col items-center justify-between p-2">
+									<div className="w-[70%] lg:w-full">
 										<p className="text-sm font-medium text-slate-600 dark:text-slate-300">
 											Add your educational background here to let employers know
 											where you studied or are currently studying
 										</p>
 									</div>
-									<div className="w-[30%] flex items-center justify-center p-2">
+									<div className="w-[30%] lg:w-full flex items-center justify-center p-2">
 										<span
 											className="w-[230px] cursor-pointer flex items-center justify-center gap-2 bg-white dark:bg-slate-700 border-[2px] border-blue-600 dark:border-slate-300 rounded-md"
 											onClick={() => setShowEducationForm(true)}>

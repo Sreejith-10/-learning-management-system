@@ -43,6 +43,31 @@ const Hero = () => {
 						alt=""
 					/>
 				</div>
+				<motion.div
+					initial={{opacity: 0, scale: 0}}
+					whileInView={{opacity: 1, scale: 1}}
+					viewport={{once: true}}
+					transition={{delay: 1, type: "spring"}}
+					className="absolute flex bottom-[100px] space-x-[100px]">
+					<span className="text-start">
+						<h1 className="text-4xl font-extrabold text-purple-900 dark:text-slate-300">
+							1200+
+						</h1>
+						<p className="font-semibold">Courses</p>
+					</span>
+					<span className="text-start">
+						<h1 className="text-4xl font-extrabold text-purple-900 dark:text-slate-300">
+							134
+						</h1>
+						<p className="font-semibold">Trained Instructors</p>
+					</span>
+					<span className="text-start">
+						<h1 className="text-4xl font-extrabold text-purple-900 dark:text-slate-300">
+							24500+
+						</h1>
+						<p className="font-semibold">Students</p>
+					</span>
+				</motion.div>
 			</PageWrapper>
 		</section>
 	);

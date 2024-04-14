@@ -12,7 +12,7 @@ import {Button} from "./ui/button";
 const Footer = () => {
 	return (
 		<footer className="w-full h-auto bg-slate-200 dark:bg-slate-900/90">
-			<div className="mx-[15%] sm:mx-[10%] flex px-5 py-10 flex-col sm:flex-col sm:gap-5">
+			<div className="mx-[15%] xl:mx-[5%] sm:mx-[5%] lg:mx-[10%] flex px-5 py-10 flex-col sm:flex-col sm:gap-5">
 				<div className="w-full h-auto flex items-center justify-between sm:flex-col md:flex-col md:gap-5 relative after:content-[' '] after:w-full after:h-[2px] after:bg-slate-400 after:dark:bg-slate-500 after:absolute after: left-0 after:top-[100px] md:after:top-[150px]">
 					<span>
 						<h1 className="font-semibold text-xl">
@@ -45,10 +45,9 @@ const Footer = () => {
 								<h1 className="font-semibold text-lg">Secretly</h1>
 							</span>
 							<p className="font-medium text-sm">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Laborum, ut error animi ducimus eligendi inventore aut dolorem
-								culpa? Beatae earum excepturi at magni consectetur placeat
-								dolores totam commodi doloremque rem!
+								Elaborate your knowledge and skill with Secretly. With Secretly
+								find the courses that is suitable to your taste. Lets go start a
+								new journy of knowledge.
 							</p>
 						</div>
 						<div className="w-[60%] flex justify-evenly sm:flex-wrap sm:gap-5 sm:justify-start md:w-full">

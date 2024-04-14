@@ -13,7 +13,7 @@ import "@/App.css";
 import {Textarea} from "../ui/textarea";
 import axios from "axios";
 import {CourseType, InstructorType} from "@/lib/types";
-import {CloudFog, LucideTrash} from "lucide-react";
+import {LucideTrash} from "lucide-react";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {useToast} from "../ui/use-toast";
 import "../../index.css";

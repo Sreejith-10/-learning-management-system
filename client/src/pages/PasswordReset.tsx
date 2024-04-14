@@ -14,7 +14,7 @@ import "@/App.css";
 import {Button} from "@/components/ui/button";
 import {useState} from "react";
 import {Label} from "@/components/ui/label";
-import {AlertTriangle} from "lucide-react";
+import {AlertTriangle, EyeIcon, EyeOffIcon} from "lucide-react";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {useToast} from "@/components/ui/use-toast";
@@ -26,6 +26,8 @@ const passwordSchema = z.object({
 const PasswordReset = () => {
 	const [err, setErr] = useState(false);
 	const [errMessage, setErrMessage] = useState("");
+	const [showPass, setShowPass] = useState(false);
+	const [showConfirmPass, setShowConfirmPass] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -78,8 +80,20 @@ const PasswordReset = () => {
 								name="password"
 								render={({field}) => (
 									<FormItem className="w-auto h-auto relative space-y-0">
+										{showPass ? (
+											<EyeIcon
+												className="absolute cursor-pointer z-10 right-3 top-1/2 -translate-y-1/2"
+												onClick={() => setShowPass(false)}
+											/>
+										) : (
+											<EyeOffIcon
+												className="absolute cursor-pointer z-10 right-3 top-1/2 -translate-y-1/2"
+												onClick={() => setShowPass(true)}
+											/>
+										)}
 										<FormControl>
 											<Input
+												type={showPass ? "text" : "password"}
 												{...field}
 												className="input-area bg-transparent dark:border-slate-100"
 												required
@@ -97,8 +111,20 @@ const PasswordReset = () => {
 								name="confirmPassword"
 								render={({field}) => (
 									<FormItem className="w-auto h-auto relative space-y-0">
+										{showConfirmPass ? (
+											<EyeIcon
+												className="absolute cursor-pointer z-10 right-3 top-1/2 -translate-y-1/2"
+												onClick={() => setShowConfirmPass(false)}
+											/>
+										) : (
+											<EyeOffIcon
+												className="absolute cursor-pointer z-10 right-3 top-1/2 -translate-y-1/2"
+												onClick={() => setShowConfirmPass(true)}
+											/>
+										)}
 										<FormControl>
 											<Input
+												type={showConfirmPass ? "text" : "password"}
 												{...field}
 												className="input-area bg-transparent dark:border-slate-100"
 												required

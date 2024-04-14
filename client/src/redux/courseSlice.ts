@@ -26,11 +26,12 @@ const INITIAL_STATE: INITIAL_STATE_TYPE = {
 				sessionDescription: "",
 				sessionDuration: 0,
 				sessionTitle: "",
-				sessionTopics: [{topicTitle: "", topicVideo: ""}],
+				sessionTopics: [{_id:"",topicTitle: "", topicVideo: ""}],
 			},
 		],
 		skillsGain: [""],
 		topics: [""],
+		studentsEnrolled:0
 	},
 	userCourses:[]
 };

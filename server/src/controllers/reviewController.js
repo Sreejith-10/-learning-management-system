@@ -2,15 +2,24 @@ import ReviewModel from "../models/reviewModel.js";
 
 export const addNewReview = async (req, res) => {
 	try {
-		const {courseId, userId, rating, review} = req.body;
+		const {courseid, userid, ratings, review} = req.body;
 
-		const newReview = await ReviewModel.findOneAndUpdate(
-			{courseId},
-			{$addToSet: {reviews: {userId: userId, rating: rating, review: review}}}
-		);
+		const course = await ReviewModel.findOne({courseId: courseid});
 
-		if (newReview)
-			return res.status(201).json({message: "Review Added", review: newReview});
+		if (course) {
+			course.reviews.addToSet({
+				userId: userid,
+				rating: ratings,
+				review: review,
+			});
+			course.save();
+		} else {
+			await ReviewModel.create({
+				courseId: courseid,
+				reviews: {userId: userid, rating: ratings, review: review},
+			});
+		}
+		return res.status(201).json({message: "Review Added"});
 	} catch (error) {
 		console.log(error);
 		return res
@@ -19,13 +28,13 @@ export const addNewReview = async (req, res) => {
 	}
 };
 
-export const getAllReviews = async (req, res) => {
+export const getReviewById = async (req, res) => {
 	try {
-		const reviews = ReviewModel.find();
+		const id = req.params.id;
 
-		if (reviews) {
-			res.status(200).json({reviews: reviews});
-		}
+		const courseReviews = await ReviewModel.findOne({courseId: id});
+
+		return res.status(200).json({reviews: courseReviews});
 	} catch (error) {
 		console.log(error);
 		return res

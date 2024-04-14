@@ -7,7 +7,6 @@ import {
 	Sun,
 	X,
 } from "lucide-react";
-import {Input} from "./input";
 import {useAppDispatch, useAppSelector} from "@/redux";
 import {Avatar, AvatarFallback, AvatarImage} from "./avatar";
 import {
@@ -19,7 +18,6 @@ import {
 } from "./menubar";
 import {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {updateSearchKey} from "@/redux/courseSlice";
 import axios from "axios";
 import {easeInOut, motion} from "framer-motion";
 import {useToast} from "./use-toast";
@@ -33,7 +31,6 @@ const Header = () => {
 	const dispatch = useAppDispatch();
 	const {isLogged} = useAppSelector((state) => state.auth);
 	const {user} = useAppSelector((state) => state.auth);
-	const [searchKey, _setSearchKey] = useState("");
 	const [showNav, setShowNav] = useState<boolean>(false);
 	const [showAccount, setShowAccount] = useState<boolean>(false);
 	const [showSearchBar, setShowSearchBar] = useState(false);
@@ -98,6 +95,7 @@ const Header = () => {
 				],
 			})
 		);
+		localStorage.removeItem("logged");
 		toast({description: data.message});
 	};
 
@@ -132,7 +130,7 @@ const Header = () => {
 					<Menu
 						onClick={() => setShowNav(true)}
 						size={30}
-						className={`${showNav ? "invisible" : "block"}`}
+						className={`${showNav ? "invisible" : "block"} cursor-pointer`}
 					/>
 				</div>
 				<div className="flex items-center md:justify-center gap-5 sm:w-full">
@@ -146,14 +144,17 @@ const Header = () => {
 							<SearchBox />
 						</div>
 					) : (
-						<h2 className="text-3xl sm:text-2xl sm:font-bold text-slate-700 dark:text-slate-300 text-center">
-							<b>SECRETLY</b>
-						</h2>
+						<Link to={"/"}>
+							<h2 className="text-3xl sm:text-2xl sm:font-bold text-slate-700 dark:text-slate-300 text-center">
+								<b>SECRETLY</b>
+							</h2>
+						</Link>
 					)}
 				</div>
 				<div className="hidden sm:block md:block lg:block pr-2">
 					{showNav ? (
 						<X
+							className="cursor-pointer"
 							onClick={() => {
 								setShowAccount(false);
 								setShowNav(false);
@@ -162,7 +163,7 @@ const Header = () => {
 						/>
 					) : (
 						<Search
-							className="text-black dark:text-slate-600"
+							className="text-black cursor-pointer dark:text-slate-600"
 							size={30}
 							onClick={() => setShowSearchBar(!showSearchBar)}
 						/>
@@ -203,7 +204,7 @@ const Header = () => {
 									<MenubarItem>
 										<Link to={"/my-courses"}>Your Courses</Link>
 									</MenubarItem>
-									<MenubarItem>Payment</MenubarItem>
+									{/* <MenubarItem>Payment</MenubarItem> */}
 									<MenubarItem>Settings</MenubarItem>
 									<MenubarItem onClick={logOut}>Logut</MenubarItem>
 								</MenubarContent>
@@ -250,7 +251,7 @@ const Header = () => {
 						onClick={() => setShowAccount(true)}
 						className="w-full flex items-center justify-between">
 						<h1 className="font-medium">Your Account</h1>
-						<ChevronRight />
+						<ChevronRight className="cursor-pointer" />
 					</span>
 					<h1 className="font-medium">Help Center</h1>
 					<h1 className="font-medium">Get our App</h1>
@@ -278,7 +279,7 @@ const Header = () => {
 				<span
 					onClick={() => setShowAccount(false)}
 					className="w-full py-4 flex items-center justify-start gap-5 bg-slate-300 dark:bg-slate-700">
-					<ChevronLeft />
+					<ChevronLeft className="cursor-pointer" />
 					<h1 className="font-medium">Main Menu</h1>
 				</span>
 				<h1 className="font-semibold pl-4">Your Account</h1>
@@ -295,7 +296,7 @@ const Header = () => {
 						className="font-medium">
 						My Courses
 					</h1>
-					<h1 className="font-medium">My purchases</h1>
+					{/* <h1 className="font-medium">My purchases</h1> */}
 					<h1 className="font-medium">Settings</h1>
 					{isLogged ? (
 						<h1 className="font-medium" onClick={logOut}>

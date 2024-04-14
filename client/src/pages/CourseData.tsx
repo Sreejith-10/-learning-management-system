@@ -46,7 +46,7 @@ const CourseData = () => {
 	return (
 		<main className="w-full h-auto">
 			<PageWrapper style={{flexDirection: "column"}}>
-				<section className="w-full h-full mt-[100px] sm:mt-10">
+				<section className="w-full h-full mt-[100px] lg:mt-5">
 					<Links />
 					<div className="pt-10 pb-2">
 						<Link
@@ -209,18 +209,18 @@ const Curriculam = () => {
 							</Button>
 						)}
 					</div>
-					{item.sessionTopics.map((topic, idx) => (
+					{item?.sessionTopics?.map((topic, idx) => (
 						<Accordion type="single" collapsible key={idx}>
-							<AccordionItem value={topic.topicTitle}>
+							<AccordionItem value={topic?.topicTitle}>
 								<AccordionTrigger className="font-[600]">
-									#{idx + 1} {topic.topicTitle}
+									#{idx + 1} {topic?.topicTitle}
 								</AccordionTrigger>
 								<AccordionContent className="space-y-5">
 									<video
 										controls
 										controlsList="nodownload"
 										width={600}
-										src="/assets/THIS_IS_4K_ANIME_Tanjiro_vs_Hantengu_Demon_Slayer_Episo_FcVVRECsb3E.mkv"></video>
+										src={topic?.topicVideo}></video>
 								</AccordionContent>
 							</AccordionItem>
 						</Accordion>
@@ -231,7 +231,9 @@ const Curriculam = () => {
 				<h1 className="font-medium text-md">
 					If you find the course intresting please feel to review and rate
 				</h1>
-				<Link to={"/review"} className="font-medium text-blue-500">
+				<Link
+					to={`/review/${user.userId}/${course._id}`}
+					className="font-medium text-blue-500">
 					Rate the course
 				</Link>
 			</span>

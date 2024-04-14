@@ -58,7 +58,7 @@ export const userLogin = async (req, res) => {
 						if (token) {
 							return res
 								.cookie("token", token, {
-									expiresIn: "3d",
+									maxAge: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
 								})
 								.status(200)
 								.json({message: "Login succesfull", token, user});
@@ -107,7 +107,7 @@ export const googleLogin = async (req, res) => {
 						if (token) {
 							return res
 								.cookie("token", token, {
-									maxAge: new Date(Date.now() + 5),
+									maxAge: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
 								})
 								.status(200)
 								.json({message: "Login succesfull", token, user});
@@ -140,7 +140,9 @@ export const googleSignUp = async (req, res) => {
 			.then(async (data) => {
 				const useExist = await UserModel.findOne({userEmail: data.email});
 				if (useExist) {
-					return res.status(409).json({message: "Email already exists"});
+					return res
+						.status(409)
+						.json({message: "User already exists please login"});
 				}
 
 				const u = await AuthModel.create({
@@ -163,8 +165,7 @@ export const googleSignUp = async (req, res) => {
 						if (token) {
 							return res
 								.cookie("token", token, {
-									maxAge: new Date(Date.now() + 5),
-									// maxAge: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
+									maxAge: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
 								})
 								.status(200)
 								.json({message: "Login succesfull", token, user});
@@ -207,7 +208,6 @@ export const userLogut = async (req, res) => {
 
 export const createAdmin = async (req, res) => {
 	try {
-		console.log(req.body);
 		const {name, email, password} = req.body;
 		const user = await AuthModel.findOne({email: email});
 		if (user) {
@@ -238,9 +238,11 @@ export const adminLogin = async (req, res) => {
 	try {
 		const {email, password} = req.body;
 		const user = await AuthModel.findOne({email});
+
 		if (!user) {
 			return res.status(404).json({message: "User not found"});
 		}
+
 		if (user.role !== "Admin") {
 			return res.status(401).json({message: "Not Authorized"});
 		}

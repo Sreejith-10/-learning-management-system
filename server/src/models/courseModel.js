@@ -41,6 +41,10 @@ const courseSchema = new mongoose.Schema({
 		type: Number,
 		required: true,
 	},
+	studentsEnrolled: {
+		type: Number,
+		default: 0,
+	},
 	sessions: [
 		{
 			sessionTitle: {

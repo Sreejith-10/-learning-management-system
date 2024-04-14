@@ -3,6 +3,7 @@ import {
 	editUserEducation,
 	editWorkExperience,
 	getAllUsers,
+	getSingleUser,
 	getUserData,
 	removeUserEducation,
 	removeWorkExperience,
@@ -15,6 +16,7 @@ import {
 const router = express.Router();
 
 router.get("/get-users", getAllUsers);
+router.get("/single-user/:id", getSingleUser);
 router.post("/get-user", getUserData);
 router.post("/update-workpreference", updateWorkPreference);
 router.post("/update-workexperience", updateWorkExperience);

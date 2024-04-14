@@ -4,10 +4,11 @@ import Dashboard from "@/pages/DashBoard";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import {Route, Routes} from "react-router-dom";
-import Test from "@/pages/test";
 import ProtectedRoute from "./ProtectedRoute";
 import PasswordReset from "@/pages/PasswordReset";
 import EmailConfirmation from "@/pages/EmailConfirmation";
+import Test from "../text";
+import ReviewForm from "@/components/forms/ReviewForm";
 
 const PageRoute = () => {
 	return (
@@ -26,7 +27,7 @@ const PageRoute = () => {
 			<Route path="/admin-login" element={<AdminLogin />} />
 			<Route path="/email-confirmation" element={<EmailConfirmation />} />
 			<Route path="/reset-password/:id/:token" element={<PasswordReset />} />
-			<Route path="/test" element={<Test />} />
+			<Route path="/test" element={<ReviewForm />} />
 		</Routes>
 	);
 };

@@ -8,9 +8,8 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import PageWrapper from "@/components/wrapper/PageWrapper";
-import {CourseType} from "@/lib/types";
 import {useAppDispatch, useAppSelector} from "@/redux";
-import {updateSingleCourse, updateUserCourses} from "@/redux/courseSlice";
+import {updateUserCourses} from "@/redux/courseSlice";
 import axios from "axios";
 import {Search} from "lucide-react";
 import {useEffect, useState} from "react";
@@ -51,15 +50,15 @@ const UserCourses = () => {
 	);
 
 	return (
-		<main className="w-full h-screen mt-20 sm:mt-0">
+		<main className="w-full h-fit lg:w-auto lg:mt-0 mt-20 sm:mt-0">
 			<section className="w-full h-fit py-5">
 				<PageWrapper style={{alignItems: "center", justifyContent: "center"}}>
-					<div className="w-full flex items-center justify-between gap-5 mt-10">
-						<div className=" text-start">
+					<div className="w-full flex items-center justify-between lg:flex-col gap-5 mt-10 lg:mt-5">
+						<div className="lg:text-start text-start">
 							<Links />
 						</div>
-						<div className="w-1/2 flex items-center">
-							<span className="w-full border border-slate-400 border-opacity-40 flex items-center gap-3 p-[8px] rounded-[8px]">
+						<div className="w-1/2 lg:w-full flex items-center">
+							<span className="w-full lg:flex border border-slate-400 border-opacity-40 flex items-center gap-3 p-[8px] rounded-[8px]">
 								<input
 									type="text"
 									onChange={(e) => setFilterKey(e.target.value)}
@@ -85,9 +84,10 @@ const UserCourses = () => {
 					</div>
 				</PageWrapper>
 			</section>
-			<section className="w-full h-auto py-10">
+			<section className="w-full h-auto py-10 lg:py-5">
 				<PageWrapper>
-					<div className="w-full grid grid-cols-4 gap-10">
+					<div className="w-full h-auto grid grid-cols-4 xls:grid-cols-3 xl:grid-cols-3 lg:grid-cols-1 lg:gap-5 md:flex md:flex-wrap md:gap-0 sm:gap-0 gap-5 mt-10 sm:items-center sm:justify-center">
+						{" "}
 						{filterResult.length < 1 ? (
 							<div className="w-full">
 								<h1>Nothing found</h1>

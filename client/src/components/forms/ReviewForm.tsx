@@ -1,59 +1,19 @@
-import {Star} from "lucide-react";
+import {ArrowLeft, Star} from "lucide-react";
 import React, {useEffect, useState} from "react";
 import {Textarea} from "../ui/textarea";
 import {Button} from "../ui/button";
-
-interface Ratings {
-	content: number;
-	instructor: number;
-	interactiveElements: number;
-	courseStructure: number;
-	platformExperience: number;
-	feedbackAndAssessment: number;
-	supportAndResources: number;
-	skillDevelopment: number;
-	overallExperience: number;
-}
-
-const StarRating: React.FC<{value: number; onClick: () => void}> = ({
-	value,
-	onClick,
-}) => {
-	return (
-		<span style={{cursor: "pointer"}} onClick={onClick}>
-			<Star
-				className="text-[#fabc11]"
-				fill={value ? "#fabc11" : "white"}
-				size={35}
-			/>
-		</span>
-	);
-};
+import {useNavigate, useParams} from "react-router-dom";
+import axios from "axios";
+import {useToast} from "../ui/use-toast";
 
 const ReviewForm: React.FC = () => {
 	const [review, setReview] = useState("");
-	const fields = [
-		"Content",
-		"Instructor",
-		"Interactive Elements",
-		"Course Structure",
-		"Platform Experience",
-		"Feedback and Assessment",
-		"Support and Resources",
-		"Skill Development",
-		"Overall Experience",
-	];
-	const [ratings, setRatings] = useState<Ratings>({
-		content: 0,
-		instructor: 0,
-		interactiveElements: 0,
-		courseStructure: 0,
-		platformExperience: 0,
-		feedbackAndAssessment: 0,
-		supportAndResources: 0,
-		skillDevelopment: 0,
-		overallExperience: 0,
-	});
+	const [ratings, setRatings] = useState(0);
+
+	const {userid, courseid} = useParams();
+
+	const {toast} = useToast();
+	const navigate = useNavigate();
 
 	useEffect(() => scrollTo(0, 0), []);
 
@@ -61,52 +21,71 @@ const ReviewForm: React.FC = () => {
 		setReview(e.target.value);
 	};
 
-	const handleRatingChange = (field: keyof Ratings, value: number) => {
-		setRatings({
-			...ratings,
-			[field]: value,
-		});
+	const handleRatingChange = (val: number) => {
+		if (val <= ratings) {
+			setRatings(val - 1);
+		} else {
+			setRatings(val);
+		}
 	};
 
 	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		console.log(ratings, review);
+		try {
+			e.preventDefault();
+
+			if (review === "" || ratings === 0) {
+				return toast({
+					title: "Error",
+					description: "Feedback connot be empty",
+				});
+			}
+
+			axios.post(
+				"/review/new-review",
+				{courseid, userid, ratings, review},
+				{headers: {"Content-Type": "application/json"}}
+			);
+			toast({title: "Success", description: "Your feedback is submitted"});
+			navigate(-1);
+		} catch (error) {
+			console.log(error);
+			toast({
+				title: "Error",
+				description: "Something went wrong please try again",
+			});
+		}
 	};
 
 	return (
-		<div className="w-full h-full bg-[rgba(0,0,0,.4)] py-[100px] flex items-center justify-center">
-			<div className="w-fit h-auto bg-white py-10 px-10 rounded-md flex flex-col items-center gap-10 overflow-y-scroll">
+		<main className="w-full h-dvh bg-[rgba(0,0,0,.4)] py-[100px] flex items-center justify-center">
+			<div className="w-fit h-auto bg-white py-10 px-10 rounded-md flex flex-col items-center gap-10">
+				<div
+					className="w-full flex items-center gap-2 hover:text-blue-500 cursor-pointer"
+					onClick={() => navigate(-1)}>
+					<ArrowLeft size={20} />
+					<p>Back</p>
+				</div>
 				<div className="w-full flex flex-col items-center justify-center gap-2">
 					<h1 className="font-semibold text-xl">We value your feedback</h1>
 					<h3 className="text-sm font-medium">It helps us imporve</h3>
 				</div>
 				<form onSubmit={handleSubmit} className="flex flex-col gap-10">
-					{Object.keys(ratings).map((field) => (
-						<div
-							key={field}
-							className="w-full flex flex-col items-center justify-center gap-5">
-							<label className="font-semibold">
-								{fields.find((item) =>
-									item
-										.toLowerCase()
-										.replaceAll(" ", "")
-										.includes(field.toLowerCase())
-								)}
-							</label>
-							<div className="flex gap-4">
-								{[1, 2, 3, 4, 5].map((star) => (
-									<StarRating
-										key={star}
-										value={star <= ratings[field as keyof Ratings] ? 1 : 0}
-										onClick={() =>
-											handleRatingChange(field as keyof Ratings, star)
-										}
-									/>
-								))}
-							</div>
-						</div>
-					))}
-
+					<div className="w-full flex items-center justify-center gap-5">
+						{[...Array(5)].map((_star, index) => {
+							return (
+								<span onClick={() => handleRatingChange(index + 1)}>
+									{ratings >= index + 1 ? (
+										<Star
+											className="fill-yellow-500 text-yellow-500"
+											size={35}
+										/>
+									) : (
+										<Star className="text-yellow-500" size={35} />
+									)}
+								</span>
+							);
+						})}
+					</div>
 					<div>
 						<Textarea
 							onChange={reviewHandler}
@@ -119,7 +98,7 @@ const ReviewForm: React.FC = () => {
 					<Button type="submit">Submit</Button>
 				</form>
 			</div>
-		</div>
+		</main>
 	);
 };
 

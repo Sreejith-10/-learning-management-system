@@ -173,3 +173,30 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:8080/course/delete-course/65f2c6b70f284cf84cc6273e
+
+
+
+###
+POST http://localhost:8080/review/new-review
+Content-Type: application/json
+
+{
+	"courseId":"65e87db4ab61677a4b30c7d7",
+	"userId":"65f7de6295b3b3304de74189",
+	"review":"This is the best full stack course i seen. ",
+	"rating":{
+		"content": "4",
+		"instructor": "3",
+		"interactiveElements": "5",
+		"courseStructure": "4",
+		"platformExperience": "4",
+		"feedbackAndAssessment": "3",
+		"supportAndResources": "2",
+		"skillDevelopment": "5",
+		"overallExperience": "3"	
+	}
+}
+
+
+###
+GET http://localhost:8080/review/get-review/65e87db4ab61677a4b30c7d7

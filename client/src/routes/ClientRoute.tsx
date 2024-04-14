@@ -14,13 +14,13 @@ const ClientRoute = () => {
 	return (
 		<Routes>
 			<Route index element={<Home />} />
-			<Route path="course" element={<CourseDetails />} />
+			<Route path="course/:id" element={<CourseDetails />} />
 			<Route path="search" element={<AllCourse />} />
 			<Route element={<AuthRoute />}>
 				<Route path="my-courses" element={<UserCourses />} />
 				<Route path="my-account" element={<Account />} />
 				<Route path="course-data/*" element={<CourseData />} />
-				<Route path="/review" element={<ReviewForm />} />
+				<Route path="/review/:userid/:courseid" element={<ReviewForm />} />
 			</Route>
 			<Route path="cancel" element={<Cancel />} />
 			<Route path="success" element={<Succes />} />

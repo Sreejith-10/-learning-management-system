@@ -19,10 +19,12 @@ export type CourseType = {
 		sessionDescription: string;
 		sessionDuration: number;
 		sessionTopics: {
+			_id: string;
 			topicTitle: string;
 			topicVideo: string;
 		}[];
 	}[];
+	studentsEnrolled: number;
 };
 
 export type InstructorType = {
@@ -41,7 +43,7 @@ export type UserType = {
 	userId: string;
 	userEmail: string;
 	userName: string;
-	profileImage:string;
+	profileImage: string;
 	workPreference: {
 		role: string;
 		industry: string;
@@ -72,5 +74,15 @@ export type UserType = {
 		courseId: string;
 		buyingDate: string;
 		status: "Started" | "Continuing" | "Completed" | "Expired";
+	}[];
+};
+
+export type ReviewType = {
+	courseId: string;
+	reviews: {
+		userId: string;
+		rating: number;
+		review: string;
+		postDate: Date;
 	}[];
 };

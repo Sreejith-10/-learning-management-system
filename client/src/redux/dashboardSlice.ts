@@ -21,11 +21,13 @@ const INITIAL_STATE: InitialStateType = {
 			coursePrice: 0,
 			sessions: [
 				{
+					_id:"",
 					sessionTitle: "",
 					sessionDescription: "",
 					sessionDuration: 0,
 					sessionTopics: [
 						{
+							_id:"",
 							topicTitle: "",
 							topicVideo: "",
 						},
@@ -33,7 +35,11 @@ const INITIAL_STATE: InitialStateType = {
 				},
 			],
 			skillsGain: [""],
-			topics: [""],
+			topics:[""],
+			startDate:"",
+			endDate:"",
+			studentsEnrolled:0,
+			thumbnail:""
 		},
 	],
 	users: [
@@ -41,7 +47,8 @@ const INITIAL_STATE: InitialStateType = {
 			userId: "",
 			userEmail: "",
 			userName: "",
-			courses: [{courseId: "", buyingDate: "", status: "Started"}],
+			profileImage:"",
+			courses: [{courseId: "", buyingDate: "",status:"Started",progress:0}],
 			education: [
 				{
 					institute: "",
@@ -83,6 +90,7 @@ const INITIAL_STATE: InitialStateType = {
 			institute: "",
 			qualification: "",
 			role: "",
+			profileImage:""
 		},
 	],
 };

@@ -71,13 +71,13 @@ const Register = () => {
 		} catch (error: any) {
 			setIsSubmitting(false);
 			setErr(error.response.data.message);
-			console.log(error.response.data.message);
 		}
 	};
 
 	const signinWithGoogle = async (resp: any) => {
 		try {
 			const accessToken = resp?.access_token;
+			setErr("");
 			const {data} = await axios.post("/auth/googlesignup", {accessToken});
 			dispatch(setAuth(data.token));
 			dispatch(updateUser(data.user));
@@ -215,11 +215,6 @@ const Register = () => {
 								className="hover:text-purple-700 ease-linear delay-200"
 								to={"/login"}>
 								Alread have an account ?
-							</Link>
-							<Link
-								className="hover:text-purple-700 ease-linear delay-200"
-								to={"/email"}>
-								Forgot password ?
 							</Link>
 						</span>
 					</Form>

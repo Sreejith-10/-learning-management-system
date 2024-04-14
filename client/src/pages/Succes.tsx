@@ -1,40 +1,8 @@
 import {Check} from "lucide-react";
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
-import {useAppDispatch, useAppSelector} from "@/redux";
-import {useEffect} from "react";
-import axios from "axios";
-import {updateUser} from "@/redux/authSlice";
-import {useCookies} from "react-cookie";
 
 const Succes = () => {
-	const [cookie, setCookie] = useCookies();
-
-	const {user} = useAppSelector((state) => state.auth);
-	const dispatch = useAppDispatch();
-	const urlp = new URLSearchParams(window.location.search);
-	const id = urlp.get("id");
-
-	// useEffect(() => {
-	// 	const updateUserCourse = async () => {
-	// 		try {
-	// 			if (user) {
-	// 				const {data} = await axios.get(
-	// 					`/course/add-course-key/${id}&${user.userId}`
-	// 				);
-
-	// 				if (data) {
-	// 					dispatch(updateUser(data.user));
-	// 				}
-	// 			}
-	// 		} catch (error) {
-	// 			console.log(error);
-	// 		}
-	// 	};
-
-	// 	updateUserCourse();
-	// }, [id]);
-
 	return (
 		<main className="w-full h-screen flex items-center justify-center">
 			<motion.div

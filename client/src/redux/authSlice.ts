@@ -45,11 +45,13 @@ type UserType = {
 type InitialStateType = {
 	isLogged: IsLog;
 	user: UserType;
-	payment:any
+	payment:any;
+	isLoading:boolean;
 };
 
 const INITIAL_STATE: InitialStateType = {
 	isLogged: false,
+	isLoading:false,
 	user: {
 		userId: "",
 		userEmail: "",
@@ -111,10 +113,13 @@ const authSlice = createSlice({
 		},
 		updatePayment : (state,action:PayloadAction<any>)=>{
 			state.payment = action.payload
+		},
+		updateLoading : (state,action:PayloadAction<boolean>)=>{
+			state.isLoading = action.payload
 		}
 	},
 });
 
-export const {setAuth, updateUser, updatePayment} = authSlice.actions;
+export const {setAuth, updateUser, updatePayment,updateLoading} = authSlice.actions;
 
 export default authSlice.reducer;

@@ -6,3 +6,11 @@
 .input-area:valid ~ .label-text {
 	@apply -top-1 bg-white text-[12px] px-2 dark:bg-slate-900 font-semibold;
 }
+
+.loader {
+	@apply w-full h-screen flex items-center justify-center;
+}
+
+.loader::before {
+	@apply content-[''] w-[100px] h-[100px] absolute bg-white border-[15px] border-blue-500 border-l-transparent bg-transparent rounded-full animate-spin;
+}

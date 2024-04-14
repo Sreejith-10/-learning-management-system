@@ -6,9 +6,10 @@ import {useAppDispatch} from "./redux";
 import {setAuth, updateUser} from "./redux/authSlice";
 import PageRoute from "./routes/PageRoute";
 import {Toaster} from "./components/ui/toaster";
+import Loader from "./components/ui/loader";
 
 function App() {
-	axios.defaults.baseURL = "http://localhost:8080";
+	axios.defaults.baseURL = import.meta.env.VITE_API;
 	axios.defaults.withCredentials = true;
 
 	const [cookies, _setCookies] = useCookies();
@@ -17,13 +18,16 @@ function App() {
 
 	useEffect(() => {
 		const checkAuthenticated = async () => {
-			const token = cookies.token;
+			const token = cookies.token || localStorage.getItem("token");
 			if (token) {
 				try {
 					setLoading(true);
 					const {data} = await axios.post("/auth/verifyToken", {
 						token,
 					});
+					if (data.user.role === "Admin") {
+						return setLoading(false);
+					}
 					if (data) {
 						const id = data.user._id;
 						const user = await axios.post(
@@ -37,6 +41,7 @@ function App() {
 						);
 						dispatch(updateUser(user.data.user));
 						setLoading(false);
+						localStorage.setItem("logged", JSON.stringify(user.data.user));
 					}
 					dispatch(setAuth(data.valid));
 				} catch (error) {
@@ -47,10 +52,14 @@ function App() {
 		};
 
 		checkAuthenticated();
+
+		return () => {
+			localStorage.removeItem("token");
+		};
 	}, [cookies.token]);
 
 	return loading ? (
-		<div>"loadingg .."</div>
+		<Loader />
 	) : (
 		<div className="w-full h-auto">
 			<Toaster />
