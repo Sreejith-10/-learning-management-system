@@ -1,2 +1,17 @@
-client
+# Environment files
+env
+
+# Console logs
+console.log
+
+# Node modules
+node_modules/
+
+# Build artifacts (common pattern)
+dist/
+
+# Specific build artifacts for server and client (optional)
+server/dist/
+client/dist/
+
 task.md
