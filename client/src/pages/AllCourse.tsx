@@ -27,7 +27,7 @@ const AllCourse = () => {
 			return item.courseName.toLowerCase().includes(key);
 		});
 		setSearchItem(filter);
-	}, [searchKey]);
+	}, [searchKey, course]);
 
 	return (
 		<main className="w-full h-full mt-[80px] sm:mt-10 dark:bg-slate-900/70">

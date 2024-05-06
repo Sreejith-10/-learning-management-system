@@ -8,6 +8,7 @@ import {
 	LucideYoutube,
 } from "lucide-react";
 import {Button} from "./ui/button";
+import {company} from "@/constants/data";
 
 const Footer = () => {
 	return (
@@ -16,7 +17,7 @@ const Footer = () => {
 				<div className="w-full h-auto flex items-center justify-between sm:flex-col md:flex-col md:gap-5 relative after:content-[' '] after:w-full after:h-[2px] after:bg-slate-400 after:dark:bg-slate-500 after:absolute after: left-0 after:top-[100px] md:after:top-[150px]">
 					<span>
 						<h1 className="font-semibold text-xl">
-							Start your learing from Secretly
+							Start your learing from {company}
 						</h1>
 						<p className="font-medium text-sm">
 							Join over 400+ courses from vast categories to find your choice
@@ -42,7 +43,7 @@ const Footer = () => {
 									alt="icons"
 									className="size-20"
 								/>
-								<h1 className="font-semibold text-lg">Secretly</h1>
+								<h1 className="font-semibold text-lg">{company}</h1>
 							</span>
 							<p className="font-medium text-sm">
 								Elaborate your knowledge and skill with Secretly. With Secretly
@@ -144,7 +145,7 @@ const Footer = () => {
 				</div>
 				<div className="w-full flex md:flex-col md:gap-5 items-center justify-between relative after:content-[' '] after:w-full after:h-[2px] after:bg-slate-400 after:dark:bg-slate-500 after:absolute after: left-0 after:top-[-50px]">
 					<span className="flex items-center gap-2 font-medium">
-						<CopyrightIcon /> 2024 Secretly, All rights reserved
+						<CopyrightIcon /> 2024 {company}, All rights reserved
 					</span>
 					<span className="flex items-center justify-center gap-5">
 						<LucideTwitter />

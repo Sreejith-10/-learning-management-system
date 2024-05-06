@@ -19,8 +19,8 @@ const SearchBox = () => {
 	useEffect(() => {
 		try {
 			axios.get("/course/get-courses").then(({data}) => {
-				let course = data.course;
-				let name = course.map((item: CourseType) => item.courseName);
+				const course = data.course;
+				const name = course.map((item: CourseType) => item.courseName);
 				setNames(name);
 			});
 		} catch (error) {
@@ -42,14 +42,14 @@ const SearchBox = () => {
 
 	useEffect(() => {
 		const renderList = () => {
-			let lists = names.filter((item) => {
+			const lists = names.filter((item) => {
 				if (searchKey === "") return null;
 				return item.toLowerCase().includes(searchKey.toLowerCase().trim());
 			});
 			setList(lists);
 		};
 		renderList();
-	}, [searchKey]);
+	}, [names, searchKey]);
 
 	const clickHandler = (item: string) => {
 		searchCourse(item);
@@ -71,7 +71,7 @@ const SearchBox = () => {
 				/>
 				<Search className="bg-blue-700 h-8 w-8 p-1 rounded-md absolute right-2 top-1/2 translate-y-[-50%] text-white" />
 			</div>
-			{list.length > 0 ? (
+			{list.length > 0 && (
 				<div className="w-full h-auto bg-slate-50 dark:bg-slate-900 rounded-md shadow-xl absolute mt-5">
 					<ul className="w-full h-full py-2 px-3 space-y-4">
 						{list.map((item, index) => (
@@ -84,7 +84,7 @@ const SearchBox = () => {
 						))}
 					</ul>
 				</div>
-			) : null}
+			)}
 		</div>
 	);
 };

@@ -13,7 +13,7 @@ const ProtectedRoute = ({children}: {children: ReactNode}) => {
 	const nav = useNavigate();
 	const {isAuthenticated} = useAppSelector((state) => state.dashboard);
 
-	const [cookies, _setCookies] = useCookies();
+	const [cookies] = useCookies();
 
 	const {toast} = useToast();
 
@@ -26,14 +26,15 @@ const ProtectedRoute = ({children}: {children: ReactNode}) => {
 				dispatch(setAuthenticated(data.valid));
 				nav("/dashboard");
 			})
-			.catch((_err) => {
+			.catch((error) => {
+				console.log(error);
 				setLoading(false);
 				toast({
 					title: "Unauthorized",
 					description: "You cannot access this route",
 				});
 			});
-	}, []);
+	}, [cookies.token]);
 
 	return loading ? (
 		<h1>Loading ... </h1>

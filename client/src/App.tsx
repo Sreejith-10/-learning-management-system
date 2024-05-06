@@ -12,7 +12,7 @@ function App() {
 	axios.defaults.baseURL = import.meta.env.VITE_API;
 	axios.defaults.withCredentials = true;
 
-	const [cookies, _setCookies] = useCookies();
+	const [cookies] = useCookies();
 	const dispatch = useAppDispatch();
 	const [loading, setLoading] = useState(false);
 
@@ -56,7 +56,7 @@ function App() {
 		return () => {
 			localStorage.removeItem("token");
 		};
-	}, [cookies.token]);
+	}, [cookies.token, dispatch]);
 
 	return loading ? (
 		<Loader />

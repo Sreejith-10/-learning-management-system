@@ -3,7 +3,7 @@ import PageWrapper from "./wrapper/PageWrapper";
 
 const Hero = () => {
 	return (
-		<section className="w-full h-screen flex items-center justify-center bg-slate-200/50 dark:bg-slate-900/50">
+		<section className="w-full h-dvh flex items-center justify-center bg-slate-200/50 dark:bg-slate-900/50">
 			<PageWrapper style={{height: "100%"}}>
 				<div className="w-1/2 h-full sm:w-full md:w-full flex flex-col items-start justify-center gap-5">
 					<motion.h2

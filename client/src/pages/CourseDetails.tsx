@@ -31,27 +31,29 @@ const CourseDetails = () => {
 
 	useEffect(() => scrollTo(0, 0), []);
 
-	const fetchData = async () => {
-		const {data} = await axios.get("/course/get-single-course/" + id);
-		setCourse(data.course);
-
-		if (data) {
-			axios
-				.get("/instructor/single-instructor/" + data.course?.courseInstructor)
-				.then(({data}) => setTutor(data.instructor));
-
-			axios
-				.get("/review/get-review/" + id)
-				.then(({data}) => setCourseReviews(data.reviews));
-		}
-	};
-
 	useEffect(() => {
-		try {
-			fetchData();
-		} catch (error) {
-			console.log(error);
-		}
+		const fetchData = async () => {
+			try {
+				const {data} = await axios.get("/course/get-single-course/" + id);
+				setCourse(data.course);
+
+				if (data) {
+					axios
+						.get(
+							"/instructor/single-instructor/" + data.course?.courseInstructor
+						)
+						.then(({data}) => setTutor(data.instructor));
+
+					axios
+						.get("/review/get-review/" + id)
+						.then(({data}) => setCourseReviews(data.reviews));
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		fetchData();
 	}, [id]);
 
 	const scrollToView = (view: string) => {

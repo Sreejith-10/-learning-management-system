@@ -25,6 +25,7 @@ import {setAuth, updateUser} from "@/redux/authSlice";
 import {useTheme} from "../theme-provider";
 import {useScrollDirection} from "@/hooks/useScrollDirection";
 import SearchBox from "./searchbox";
+import {company} from "@/constants/data";
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -42,7 +43,7 @@ const Header = () => {
 		if (showNav) {
 			document.body.style.overflowX = "hidden";
 		}
-	}, []);
+	}, [showNav]);
 
 	const logOut = async () => {
 		const {data} = await axios.get("/auth/logout");
@@ -146,7 +147,7 @@ const Header = () => {
 					) : (
 						<Link to={"/"}>
 							<h2 className="text-3xl sm:text-2xl sm:font-bold text-slate-700 dark:text-slate-300 text-center">
-								<b>SECRETLY</b>
+								<b className="uppercase">{company}</b>
 							</h2>
 						</Link>
 					)}
@@ -241,7 +242,7 @@ const Header = () => {
 				className="w-full h-[calc(100vh-80px)] hidden sm:block md:block lg:block absolute bg-slate-100 dark:bg-slate-900 p-4 space-y-4 sm:fixed">
 				<div className="w-full h-auto flex items-center gap-5">
 					<Avatar>
-						<AvatarImage src="/assets/random/testimonial-4.jpg" />
+						<AvatarImage src="/assets/Default_pfp.svg.png" />
 						<AvatarFallback>{user?.userName?.charAt(0)}</AvatarFallback>
 					</Avatar>
 					<h2 className="font-medium">{user?.userName}</h2>
@@ -276,38 +277,61 @@ const Header = () => {
 				initial="show"
 				animate={showAccount ? "show" : "hide"}
 				className="w-full h-[calc(100vh-80px)] hidden sm:block md:block lg:block fixed bg-slate-100 dark:bg-slate-900 space-y-4">
-				<span
-					onClick={() => setShowAccount(false)}
-					className="w-full py-4 flex items-center justify-start gap-5 bg-slate-300 dark:bg-slate-700">
-					<ChevronLeft className="cursor-pointer" />
-					<h1 className="font-medium">Main Menu</h1>
-				</span>
-				<h1 className="font-semibold pl-4">Your Account</h1>
-				<div className="space-y-3 px-5 flex flex-col">
-					<h1
-						onClick={() => navigatonHandler("/my-account")}
-						className="font-medium">
-						Profile
-					</h1>
-					<h1
-						onClick={() => {
-							navigatonHandler("/my-courses");
-						}}
-						className="font-medium">
-						My Courses
-					</h1>
-					{/* <h1 className="font-medium">My purchases</h1> */}
-					<h1 className="font-medium">Settings</h1>
+				<>
 					{isLogged ? (
-						<h1 className="font-medium" onClick={logOut}>
-							Log Out
-						</h1>
+						<>
+							<span
+								onClick={() => setShowAccount(false)}
+								className="w-full py-4 flex items-center justify-start gap-5 bg-slate-300 dark:bg-slate-700">
+								<ChevronLeft className="cursor-pointer" />
+								<h1 className="font-medium">Main Menu</h1>
+							</span>
+							<h1 className="font-semibold pl-4">Your Account</h1>
+							<div className="space-y-3 px-5 flex flex-col">
+								<h1
+									onClick={() => navigatonHandler("/my-account")}
+									className="font-medium">
+									Profile
+								</h1>
+								<h1
+									onClick={() => {
+										navigatonHandler("/my-courses");
+									}}
+									className="font-medium">
+									My Courses
+								</h1>
+								{/* <h1 className="font-medium">My purchases</h1> */}
+								<h1 className="font-medium">Settings</h1>
+								{isLogged ? (
+									<h1 className="font-medium" onClick={logOut}>
+										Log Out
+									</h1>
+								) : (
+									<h1
+										className="font-medium"
+										onClick={() => navigate("/login")}>
+										Log In
+									</h1>
+								)}
+							</div>
+						</>
 					) : (
-						<h1 className="font-medium" onClick={() => navigate("/login")}>
-							Log In
-						</h1>
+						<>
+							<div className="w-full h-auto p-10 space-x-5">
+								<a
+									href="/register"
+									className="bg-blue-500 text-white px-3 py-2 rounded-[5px] shadow-md">
+									SignUp?
+								</a>
+								<a
+									href="/login"
+									className="bg-white text-blue-500 px-3 py-2 rounded-[5px] shadow-md">
+									Login?
+								</a>
+							</div>
+						</>
 					)}
-				</div>
+				</>
 			</motion.div>
 		</motion.header>
 	);

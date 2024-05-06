@@ -9,6 +9,7 @@ import UserCourses from "@/pages/UserCourses";
 import {Route, Routes} from "react-router-dom";
 import AuthRoute from "./AuthRoute";
 import ReviewForm from "@/components/forms/ReviewForm";
+import JobPosting from "@/pages/JobPosting";
 
 const ClientRoute = () => {
 	return (
@@ -22,6 +23,7 @@ const ClientRoute = () => {
 				<Route path="course-data/*" element={<CourseData />} />
 				<Route path="/review/:userid/:courseid" element={<ReviewForm />} />
 			</Route>
+			<Route path="/job-posting" element={<JobPosting />} />
 			<Route path="cancel" element={<Cancel />} />
 			<Route path="success" element={<Succes />} />
 		</Routes>
